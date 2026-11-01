@@ -3,123 +3,568 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>髖關節術後居家康復語音指南</title>
+  <title>髖關節手術後・前三天居家安心康復手冊</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.8;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f8fafc;
-      color: #1e293b;
+    :root {
+      --primary-color: #0f766e;
+      --primary-light: #f0fdfa;
+      --danger-color: #b91c1c;
+      --danger-light: #fef2f2;
+      --warning-color: #b45309;
+      --warning-light: #fffbeb;
+      --text-main: #1e293b;
+      --bg-page: #f8fafc;
+      --card-bg: #ffffff;
+      --base-font-size: 20px; /* 長者友善預設大字 */
     }
-    .sticky-player {
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", Roboto, sans-serif;
+      font-size: var(--base-font-size);
+      line-height: 1.8;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      padding: 16px;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto 60px auto;
+    }
+
+    /* 置頂綜合控制台（大字調節 + 聲音切換 + 語速 + 播放控制） */
+    .top-bar {
       position: sticky;
       top: 10px;
-      background: #ffffff;
+      background: var(--card-bg);
       padding: 16px 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
       margin-bottom: 24px;
-      z-index: 100;
+      z-index: 1000;
+      border: 2px solid #cbd5e1;
     }
+
     .control-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: space-between;
       gap: 12px;
-      margin-top: 10px;
+      margin-bottom: 12px;
     }
-    label { font-size: 1.1rem; font-weight: bold; }
-    select, button {
-      font-size: 1.1rem;
-      padding: 8px 16px;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      background-color: #f1f5f9;
-      cursor: pointer;
+
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    audio { width: 100%; margin-top: 8px; }
-    .content {
-      font-size: 1.35rem; /* 大字排版，利於長輩閱讀 */
-      line-height: 2.1;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 16px;
-    }
-    .highlight {
-      background-color: #fef08a;
-      padding: 2px 6px;
-      border-radius: 4px;
+
+    .btn, select {
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      color: #0f172a;
+      font-size: 1.05rem;
       font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover, select:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
+    .font-label {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 播放器與聲音調整區塊 */
+    .audio-panel {
+      padding-top: 12px;
+      border-top: 2px dashed #e2e8f0;
+    }
+
+    .audio-settings {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    audio {
+      width: 100%;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    /* 模式切換按鈕卡片 */
+    .view-toggle-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      text-align: center;
+      padding: 14px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border-radius: 14px;
+      border: 2px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn.active {
+      background: #0f766e;
+      color: #ffffff;
+      border-color: #0f766e;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+    }
+
+    /* 內容卡片 */
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 26px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      color: var(--primary-color);
+      margin-bottom: 14px;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #0f172a;
+      border-left: 6px solid var(--primary-color);
+      padding-left: 12px;
+      margin: 24px 0 14px 0;
+    }
+
+    h3 {
+      font-size: 1.28rem;
+      color: #334155;
+      margin: 16px 0 8px 0;
+    }
+
+    .intro-box {
+      background-color: var(--primary-light);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 20px;
+      border-left: 6px solid var(--primary-color);
+    }
+
+    /* 警示與三大禁忌卡片 */
+    .danger-box {
+      background-color: var(--danger-light);
+      border: 2px solid #fca5a5;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .danger-box h3 {
+      color: var(--danger-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .highlight-tag {
+      display: inline-block;
+      background-color: #fee2e2;
+      color: #991b1b;
+      font-weight: bold;
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-right: 6px;
+    }
+
+    /* 每日時程卡片 */
+    .schedule-item {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* 檢核表格 */
+    .table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 14px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      font-weight: bold;
+    }
+
+    .checkbox {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+
+    /* 紅黃綠燈 */
+    .signal-card {
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      line-height: 1.9;
+    }
+
+    .signal-green {
+      background: #f0fdf4;
+      border-left: 6px solid #16a34a;
+    }
+
+    .signal-yellow {
+      background: #fffbeb;
+      border-left: 6px solid #d97706;
+    }
+
+    .signal-red {
+      background: #fef2f2;
+      border-left: 6px solid #dc2626;
+    }
+
+    .footer-contact {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 18px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .phone-btn {
+      display: inline-block;
+      background: #22c55e;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: bold;
+      padding: 12px 28px;
+      border-radius: 30px;
+      margin-top: 14px;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
     }
   </style>
 </head>
 <body>
 
-  <!-- 置頂播放控制區塊 -->
-  <div class="sticky-player">
-    <label>🔊 語音朗讀專區</label>
-    <audio id="audioPlayer" controls src="衛教語音_女聲.mp3"></audio>
+<div class="container">
 
-    <div class="control-row">
-      <!-- 選擇聲音 -->
-      <label for="voiceSelect">聲音：</label>
-      <select id="voiceSelect" onchange="changeVoice()">
-        <option value="衛教語音_女聲.mp3">溫柔女聲（曉臻）</option>
-        <option value="衛教語音_男聲.mp3">沈穩男聲（雲哲）</option>
-      </select>
+  <!-- 模式切換大按鈕：看文字 或 聽語音 -->
+  <div class="view-toggle-bar">
+    <button class="toggle-btn active" id="btnModeBoth" onclick="setMode('both')">📖 邊看邊聽</button>
+    <button class="toggle-btn" id="btnModeListen" onclick="setMode('listen')">🎧 專心聽語音</button>
+    <button class="toggle-btn" id="btnModeRead" onclick="setMode('read')">👀 純閱讀大字</button>
+  </div>
 
-      <!-- 調整速度 -->
-      <label for="speedSelect">語速：</label>
-      <select id="speedSelect" onchange="changeSpeed()">
-        <option value="0.75">超慢 (0.75x)</option>
-        <option value="0.85" selected>長輩慢速 (0.85x)</option>
-        <option value="1.0">正常速度 (1.0x)</option>
-      </select>
+  <!-- 置頂控制台：字體調節 + 語音切換與調速 -->
+  <div class="top-bar" id="controlPanel">
+    
+    <!-- 字體放大縮小區 -->
+    <div class="control-row" id="fontControlRow">
+      <span class="font-label">🔍 字體大小：</span>
+      <div class="font-controls">
+        <button class="btn" onclick="changeFontSize(-2)">A- 縮小</button>
+        <button class="btn" onclick="resetFontSize()">預設</button>
+        <button class="btn" onclick="changeFontSize(2)">A+ 放大</button>
+        <button class="btn" onclick="changeFontSize(6)" style="background: #e0f2fe; color: #0369a1;">特大字</button>
+      </div>
+    </div>
+
+    <!-- 語音控制區（換聲音、換語速、播放器） -->
+    <div class="audio-panel" id="audioPanel">
+      <div class="audio-settings">
+        <div class="setting-item">
+          <label for="voiceSelect" class="font-label">🎙️ 聲音：</label>
+          <select id="voiceSelect" onchange="changeVoice()">
+            <option value="audio_female.mp3">溫柔女聲（曉臻）</option>
+            <option value="audio_male.mp3">沈穩男聲（雲哲）</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label for="speedSelect" class="font-label">⚡ 速度：</label>
+          <select id="speedSelect" onchange="changeSpeed()">
+            <option value="0.75">超慢速 (0.75x)</option>
+            <option value="0.85" selected>長輩慢速 (0.85x)</option>
+            <option value="1.0">正常速度 (1.0x)</option>
+          </select>
+        </div>
+      </div>
+
+      <audio id="audioPlayer" controls src="audio_female.mp3">
+        您的瀏覽器不支援音訊播放，請更新瀏覽器。
+      </audio>
     </div>
   </div>
 
-  <!-- 衛教大字內文 -->
-  <div class="content">
-    <h2>🌸 髖關節手術後・居家安心康復指南</h2>
-    <p>長輩您好，我是您的護理師。恭喜您順利完成髖關節手術出院回家！請放輕鬆，邊聽邊看以下重點：</p>
+  <!-- 完整衛教內文區 -->
+  <div class="card" id="textContentArea">
+    <h1>🌸 髖關節手術後<br>前三天居家安心康復手冊</h1>
     
-    <h3>🛑 第一件事：保護新關節，記住三個千萬不要</h3>
-    <p>1. <span class="highlight">千萬不要彎腰超過 90 度</span>：不要彎腰撿東西，坐有扶手的高椅子，使用馬桶增高墊。</p>
-    <p>2. <span class="highlight">腳尖千萬不要向內轉</span>：走路腳尖朝前，不可內八。</p>
-    <p>3. <span class="highlight">千萬不要翹二郎腿</span>：平躺時雙腿中間夾一顆大枕頭，保持分開。</p>
+    <div class="intro-box">
+      <strong>親愛的長輩與家屬您好：</strong><br>
+      恭喜您順利完成手術出院！剛回家的前幾天，身體需要時間適應與修復。請放慢腳步，跟著這份專為您量身整理的手冊一步一步來，我們隨時陪伴在您身邊。
+    </div>
 
-    <h3>🚶 第二件事：每天下床與散步</h3>
-    <p>下床前先在床邊坐穩不暈眩，雙手務必扶穩助行器，累了就坐下休息。躺著時多動動腳踝翹一翹促進循環。</p>
+    <h2>🛑 第一守則：保護新關節！「三個千萬不要」</h2>
+    <p style="margin-bottom: 14px;"><strong>術後 6 週內嚴格遵守</strong>，防止新裝的人工髖關節脫臼：</p>
 
-    <h3>🩹 第三件事：傷口與用藥叮嚀</h3>
-    <p>傷口金屬釘不可碰水或泡澡，注意醫師標記的紅線是否往外擴散超過 2 公分。每日固定施打防血栓肚皮針並按時服藥。</p>
+    <div class="danger-box">
+      <h3>❌ 1. 身體千萬不要彎曲超過 90 度</h3>
+      <p><span class="highlight-tag">危險動作</span> 彎腰撿地上東西、坐太矮或太軟的沙發、坐下時膝蓋高於髖部。</p>
+      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 坐有扶手的高靠背椅（可加厚椅墊），上廁所務必使用<strong>增高馬桶座墊</strong>，拿低處物品請家人代勞或使用長柄取物夾。</p>
+    </div>
+
+    <div class="danger-box">
+      <h3>❌ 2. 開刀腳向內轉（千萬不要內八）</h3>
+      <p><span class="highlight-tag">危險動作</span> 站立、走動或轉身時，開刀腳的腳尖朝內扭轉。</p>
+      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 站立、走路與移位時，<strong>腳尖和膝蓋隨時朝向正前方</strong>，轉彎要一步一步踏實轉。</p>
+    </div>
+
+    <div class="danger-box">
+      <h3>❌ 3. 雙腳交叉或翹二郎腿</h3>
+      <p><span class="highlight-tag">危險動作</span> 坐在椅子上翹腳，或躺著時開刀腳交叉跨過身體中心線。</p>
+      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 平躺時雙腿中間<strong>務必夾一顆大枕頭（外展枕）</strong>，隨時保持雙腿微張分開。</p>
+    </div>
+
+    <h2>📅 前三天每日康復時程表</h2>
+    <p>每次起身與移動，<strong>雙手務必扶穩四腳助行器（FWW）</strong>，開刀腳在耐受範圍內可踩地負重。</p>
+
+    <div class="schedule-item">
+      <strong>【第一天 Day 1：返家安置與休養】</strong>
+      <p>• 乘車返家椅背微傾斜，避免身體彎曲過度。<br>
+      • 回房平躺休息，腿間夾好防翻枕頭。<br>
+      • 躺在床上每小時做 10～15 次「腳踝上下翹運動」，促進血液循環。<br>
+      • 晚上由照顧者協助確認傷口敷料，定時施打肚皮抗凝血針。</p>
+    </div>
+
+    <div class="schedule-item">
+      <strong>【第二天 Day 2：步態穩定與下床走動】</strong>
+      <p>• 下床前先在床緣坐穩 1 分鐘，確認不頭暈再扶助行器站立。<br>
+      • 在房間走道慢走 5～10 分鐘，累了就坐下休息。<br>
+      • 配合居家護理師或物理治療師到府指導。<br>
+      • 若髖部微腫脹，可隔乾毛巾冰敷 15 分鐘（嚴防弄濕敷料）。</p>
+    </div>
+
+    <div class="schedule-item">
+      <strong>【第三天 Day 3：環境適應與回診確認】</strong>
+      <p>• 增加走廊慢走次數（每次 10 分鐘，每天 2～3 次），轉彎邁小步。<br>
+      • 確認術後 12～14 天的回診預約單與行動抽血行程。<br>
+      • 觀察並比對傷口紅暈，確認未超出手術標記線。</p>
+    </div>
+
+    <h2>🩹 傷口紅線追蹤與打針清單</h2>
+    <div style="background:#f8fafc; padding:16px; border-radius:12px; border:1px solid #cbd5e1; margin-bottom:16px;">
+      <p>📌 <strong>金屬釘保護</strong>：回診拆釘前絕對不可抓撓，<strong>禁止泡澡與淋浴</strong>，請以擦澡方式清潔。</p>
+      <p>🖍️ <strong>紅線追蹤法</strong>：醫師在傷口周圍畫有手術筆標記線。若紅暈擴散<strong>超過筆跡 2 公分</strong>或摸起來劇烈滾燙，請立刻聯絡醫院。</p>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>時間與頻率</th>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>肚皮抗凝血針 (Lovenox)</strong><br><small>預防靜脈血栓</small></td>
+            <td>每日固定 1 次（左右輪流施打）</td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+          </tr>
+          <tr>
+            <td><strong>普拿疼止痛錠 (Acetaminophen)</strong><br><small>打底止痛（每日上限 6 顆）</small></td>
+            <td>每 8 小時吃 2 顆</td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+          </tr>
+          <tr>
+            <td><strong>消炎止痛藥 (Celebrex)</strong><br><small>減輕關節發炎腫脹</small></td>
+            <td>早晚飯後各 1 顆</td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+          </tr>
+          <tr>
+            <td><strong>軟便藥 (Colace)</strong><br><small>預防便秘用力</small></td>
+            <td>早晚各 1 顆</td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td><input type="checkbox" class="checkbox"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>🚨 紅黃綠燈警訊指引</h2>
+
+    <div class="signal-card signal-green">
+      <strong>🟢 綠燈（正常康復現象）：</strong><br>
+      開刀部位輕微緊繃、輕微瘀青漸漸消退；散步後稍微疲倦，休息後好轉。
+    </div>
+
+    <div class="signal-card signal-yellow">
+      <strong>🟡 黃燈（上班時間請致電門診／個管師）：</strong><br>
+      • 傷口周圍紅暈往外擴散超過 2 公分。<br>
+      • 紗布滲出黃色混濁分泌物或有異味。<br>
+      • 體溫發燒超過 38.5°C。<br>
+      • 單側小腿肚明顯腫大、發硬、壓下去劇痛。<br>
+      • 止痛藥服用後依然持續劇痛無法入睡。
+    </div>
+
+    <div class="signal-card signal-red">
+      <strong>🔴 紅燈（立刻撥打 119 送急診！）：</strong><br>
+      • 突發性呼吸急促、喘不過氣或劇烈胸痛（疑似肺栓塞）。<br>
+      • 跌倒撞擊，或髖部發出聲響後雙腿變形長短不一、完全無法站立（疑似脫臼）。
+    </div>
+
+    <div class="footer-contact">
+      <p style="font-size:1.2rem;">有任何不確定，請不要猶豫，隨時與我們聯絡！</p>
+      <p style="margin-top:8px;">門診個管師專線：(02) 2345-6789 分機 1234</p>
+      <a href="tel:0223456789" class="phone-btn">📞 一鍵致電門診護理專線</a>
+    </div>
+
   </div>
 
-  <script>
-    const player = document.getElementById('audioPlayer');
-    const speedSelect = document.getElementById('speedSelect');
-    const voiceSelect = document.getElementById('voiceSelect');
+</div>
 
-    function changeSpeed() {
-      player.playbackRate = parseFloat(speedSelect.value);
+<script>
+  // 字體調整邏輯
+  let currentFontSize = 20;
+
+  function updateFontSize() {
+    document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+  }
+
+  function changeFontSize(delta) {
+    currentFontSize += delta;
+    if (currentFontSize < 16) currentFontSize = 16;
+    if (currentFontSize > 36) currentFontSize = 36;
+    updateFontSize();
+  }
+
+  function resetFontSize() {
+    currentFontSize = 20;
+    updateFontSize();
+  }
+
+  // 音訊播放控制邏輯
+  const player = document.getElementById('audioPlayer');
+  const speedSelect = document.getElementById('speedSelect');
+  const voiceSelect = document.getElementById('voiceSelect');
+
+  function changeSpeed() {
+    player.playbackRate = parseFloat(speedSelect.value);
+  }
+
+  function changeVoice() {
+    const isPlaying = !player.paused;
+    const currentTime = player.currentTime;
+    player.src = voiceSelect.value;
+    player.currentTime = currentTime;
+    changeSpeed();
+    if (isPlaying) player.play();
+  }
+
+  player.addEventListener('play', () => {
+    changeSpeed();
+  });
+
+  // 模式切換（邊看邊聽 / 專心聽語音 / 純閱讀大字）
+  function setMode(mode) {
+    const btnBoth = document.getElementById('btnModeBoth');
+    const btnListen = document.getElementById('btnModeListen');
+    const btnRead = document.getElementById('btnModeRead');
+    
+    const fontRow = document.getElementById('fontControlRow');
+    const audioPanel = document.getElementById('audioPanel');
+    const textContent = document.getElementById('textContentArea');
+
+    btnBoth.classList.remove('active');
+    btnListen.classList.remove('active');
+    btnRead.classList.remove('active');
+
+    if (mode === 'both') {
+      btnBoth.classList.add('active');
+      fontRow.style.display = 'flex';
+      audioPanel.style.display = 'block';
+      textContent.style.display = 'block';
+    } else if (mode === 'listen') {
+      btnListen.classList.add('active');
+      fontRow.style.display = 'none';
+      audioPanel.style.display = 'block';
+      textContent.style.display = 'none';
+    } else if (mode === 'read') {
+      btnRead.classList.add('active');
+      fontRow.style.display = 'flex';
+      audioPanel.style.display = 'none';
+      textContent.style.display = 'block';
+      player.pause();
     }
+  }
+</script>
 
-    function changeVoice() {
-      const isPlaying = !player.paused;
-      const currentTime = player.currentTime;
-      player.src = voiceSelect.value;
-      player.currentTime = currentTime;
-      changeSpeed();
-      if (isPlaying) player.play();
-    }
-
-    // 初始化速度
-    player.addEventListener('play', () => {
-      changeSpeed();
-    });
-  </script>
 </body>
 </html>
