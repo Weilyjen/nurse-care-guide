@@ -188,6 +188,33 @@
       border-left: 6px solid var(--primary-color);
     }
 
+    /* 衛教海報圖片容器 */
+    .poster-container {
+      text-align: center;
+      margin: 20px 0 26px 0;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 16px;
+      border: 2px solid #e2e8f0;
+    }
+
+    .poster-img {
+      width: 100%;
+      height: auto;
+      max-width: 760px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .poster-caption {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: #64748b;
+      font-weight: bold;
+    }
+
     /* 警示與三大禁忌卡片 */
     .danger-box {
       background-color: var(--danger-light);
@@ -361,210 +388,8 @@
       恭喜您順利完成手術出院！剛回家的前幾天，身體需要時間適應與修復。請放慢腳步，跟著這份專為您量身整理的手冊一步一步來，我們隨時陪伴在您身邊。
     </div>
 
-    <h2>🛑 第一守則：保護新關節！「三個千萬不要」</h2>
-    <p style="margin-bottom: 14px;"><strong>術後 6 週內嚴格遵守</strong>，防止新裝的人工髖關節脫臼：</p>
-
-    <div class="danger-box">
-      <h3>❌ 1. 身體千萬不要彎曲超過 90 度</h3>
-      <p><span class="highlight-tag">危險動作</span> 彎腰撿地上東西、坐太矮或太軟的沙發、坐下時膝蓋高於髖部。</p>
-      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 坐有扶手的高靠背椅（可加厚椅墊），上廁所務必使用<strong>增高馬桶座墊</strong>，拿低處物品請家人代勞或使用長柄取物夾。</p>
+    <!-- 核心衛教資訊海報 (hip.jpg) -->
+    <div class="poster-container">
+      <img src="hip.jpg" alt="髖關節術後居家安心康復指南海報" class="poster-img" onerror="this.onerror=null; this.alt='請確認 hip.jpg 已放在同一資料夾';">
+      <div class="poster-caption">📌 點圖或依照以下大字指引逐步執行居家康復</div>
     </div>
-
-    <div class="danger-box">
-      <h3>❌ 2. 開刀腳向內轉（千萬不要內八）</h3>
-      <p><span class="highlight-tag">危險動作</span> 站立、走動或轉身時，開刀腳的腳尖朝內扭轉。</p>
-      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 站立、走路與移位時，<strong>腳尖和膝蓋隨時朝向正前方</strong>，轉彎要一步一步踏實轉。</p>
-    </div>
-
-    <div class="danger-box">
-      <h3>❌ 3. 雙腳交叉或翹二郎腿</h3>
-      <p><span class="highlight-tag">危險動作</span> 坐在椅子上翹腳，或躺著時開刀腳交叉跨過身體中心線。</p>
-      <p><span class="highlight-tag" style="background:#dcfce7; color:#15803d;">正確做法</span> 平躺時雙腿中間<strong>務必夾一顆大枕頭（外展枕）</strong>，隨時保持雙腿微張分開。</p>
-    </div>
-
-    <h2>📅 前三天每日康復時程表</h2>
-    <p>每次起身與移動，<strong>雙手務必扶穩四腳助行器（FWW）</strong>，開刀腳在耐受範圍內可踩地負重。</p>
-
-    <div class="schedule-item">
-      <strong>【第一天 Day 1：返家安置與休養】</strong>
-      <p>• 乘車返家椅背微傾斜，避免身體彎曲過度。<br>
-      • 回房平躺休息，腿間夾好防翻枕頭。<br>
-      • 躺在床上每小時做 10～15 次「腳踝上下翹運動」，促進血液循環。<br>
-      • 晚上由照顧者協助確認傷口敷料，定時施打肚皮抗凝血針。</p>
-    </div>
-
-    <div class="schedule-item">
-      <strong>【第二天 Day 2：步態穩定與下床走動】</strong>
-      <p>• 下床前先在床緣坐穩 1 分鐘，確認不頭暈再扶助行器站立。<br>
-      • 在房間走道慢走 5～10 分鐘，累了就坐下休息。<br>
-      • 配合居家護理師或物理治療師到府指導。<br>
-      • 若髖部微腫脹，可隔乾毛巾冰敷 15 分鐘（嚴防弄濕敷料）。</p>
-    </div>
-
-    <div class="schedule-item">
-      <strong>【第三天 Day 3：環境適應與回診確認】</strong>
-      <p>• 增加走廊慢走次數（每次 10 分鐘，每天 2～3 次），轉彎邁小步。<br>
-      • 確認術後 12～14 天的回診預約單與行動抽血行程。<br>
-      • 觀察並比對傷口紅暈，確認未超出手術標記線。</p>
-    </div>
-
-    <h2>🩹 傷口紅線追蹤與打針清單</h2>
-    <div style="background:#f8fafc; padding:16px; border-radius:12px; border:1px solid #cbd5e1; margin-bottom:16px;">
-      <p>📌 <strong>金屬釘保護</strong>：回診拆釘前絕對不可抓撓，<strong>禁止泡澡與淋浴</strong>，請以擦澡方式清潔。</p>
-      <p>🖍️ <strong>紅線追蹤法</strong>：醫師在傷口周圍畫有手術筆標記線。若紅暈擴散<strong>超過筆跡 2 公分</strong>或摸起來劇烈滾燙，請立刻聯絡醫院。</p>
-    </div>
-
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>時間與頻率</th>
-            <th>Day 1</th>
-            <th>Day 2</th>
-            <th>Day 3</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>肚皮抗凝血針 (Lovenox)</strong><br><small>預防靜脈血栓</small></td>
-            <td>每日固定 1 次（左右輪流施打）</td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-          </tr>
-          <tr>
-            <td><strong>普拿疼止痛錠 (Acetaminophen)</strong><br><small>打底止痛（每日上限 6 顆）</small></td>
-            <td>每 8 小時吃 2 顆</td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-          </tr>
-          <tr>
-            <td><strong>消炎止痛藥 (Celebrex)</strong><br><small>減輕關節發炎腫脹</small></td>
-            <td>早晚飯後各 1 顆</td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-          </tr>
-          <tr>
-            <td><strong>軟便藥 (Colace)</strong><br><small>預防便秘用力</small></td>
-            <td>早晚各 1 顆</td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-            <td><input type="checkbox" class="checkbox"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>🚨 紅黃綠燈警訊指引</h2>
-
-    <div class="signal-card signal-green">
-      <strong>🟢 綠燈（正常康復現象）：</strong><br>
-      開刀部位輕微緊繃、輕微瘀青漸漸消退；散步後稍微疲倦，休息後好轉。
-    </div>
-
-    <div class="signal-card signal-yellow">
-      <strong>🟡 黃燈（上班時間請致電門診／個管師）：</strong><br>
-      • 傷口周圍紅暈往外擴散超過 2 公分。<br>
-      • 紗布滲出黃色混濁分泌物或有異味。<br>
-      • 體溫發燒超過 38.5°C。<br>
-      • 單側小腿肚明顯腫大、發硬、壓下去劇痛。<br>
-      • 止痛藥服用後依然持續劇痛無法入睡。
-    </div>
-
-    <div class="signal-card signal-red">
-      <strong>🔴 紅燈（立刻撥打 119 送急診！）：</strong><br>
-      • 突發性呼吸急促、喘不過氣或劇烈胸痛（疑似肺栓塞）。<br>
-      • 跌倒撞擊，或髖部發出聲響後雙腿變形長短不一、完全無法站立（疑似脫臼）。
-    </div>
-
-    <div class="footer-contact">
-      <p style="font-size:1.2rem;">有任何不確定，請不要猶豫，隨時與我們聯絡！</p>
-      <p style="margin-top:8px;">門診個管師專線：(02) 2345-6789 分機 1234</p>
-      <a href="tel:0223456789" class="phone-btn">📞 一鍵致電門診護理專線</a>
-    </div>
-
-  </div>
-
-</div>
-
-<script>
-  // 字體調整邏輯
-  let currentFontSize = 20;
-
-  function updateFontSize() {
-    document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
-  }
-
-  function changeFontSize(delta) {
-    currentFontSize += delta;
-    if (currentFontSize < 16) currentFontSize = 16;
-    if (currentFontSize > 36) currentFontSize = 36;
-    updateFontSize();
-  }
-
-  function resetFontSize() {
-    currentFontSize = 20;
-    updateFontSize();
-  }
-
-  // 音訊播放控制邏輯
-  const player = document.getElementById('audioPlayer');
-  const speedSelect = document.getElementById('speedSelect');
-  const voiceSelect = document.getElementById('voiceSelect');
-
-  function changeSpeed() {
-    player.playbackRate = parseFloat(speedSelect.value);
-  }
-
-  function changeVoice() {
-    const isPlaying = !player.paused;
-    const currentTime = player.currentTime;
-    player.src = voiceSelect.value;
-    player.currentTime = currentTime;
-    changeSpeed();
-    if (isPlaying) player.play();
-  }
-
-  player.addEventListener('play', () => {
-    changeSpeed();
-  });
-
-  // 模式切換（邊看邊聽 / 專心聽語音 / 純閱讀大字）
-  function setMode(mode) {
-    const btnBoth = document.getElementById('btnModeBoth');
-    const btnListen = document.getElementById('btnModeListen');
-    const btnRead = document.getElementById('btnModeRead');
-    
-    const fontRow = document.getElementById('fontControlRow');
-    const audioPanel = document.getElementById('audioPanel');
-    const textContent = document.getElementById('textContentArea');
-
-    btnBoth.classList.remove('active');
-    btnListen.classList.remove('active');
-    btnRead.classList.remove('active');
-
-    if (mode === 'both') {
-      btnBoth.classList.add('active');
-      fontRow.style.display = 'flex';
-      audioPanel.style.display = 'block';
-      textContent.style.display = 'block';
-    } else if (mode === 'listen') {
-      btnListen.classList.add('active');
-      fontRow.style.display = 'none';
-      audioPanel.style.display = 'block';
-      textContent.style.display = 'none';
-    } else if (mode === 'read') {
-      btnRead.classList.add('active');
-      fontRow.style.display = 'flex';
-      audioPanel.style.display = 'none';
-      textContent.style.display = 'block';
-      player.pause();
-    }
-  }
-</script>
-
-</body>
-</html>
